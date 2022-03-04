@@ -32,15 +32,14 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
     public AlterarPatrimonio() {
         initComponents();
 
-        /*cbUserName.setEnabled(false);
-        campo_processador.setEnabled(false);
+        cbPc.setEnabled(true);
+        /*campo_processador.setEnabled(false);
         campo_hd.setEnabled(false);
         campo_memoria.setEnabled(false);
         cbSsd.setEnabled(false);
         label_setor.setForeground(Color.red);
         label_tombamento.setForeground(Color.red);
         label_descricao.setForeground(Color.red);
-        label_usuario.setForeground(Color.gray);
         label_processador.setForeground(Color.gray);
         label_hd.setForeground(Color.gray);
         label_memoria.setForeground(Color.gray);
@@ -104,7 +103,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         label_processador = new javax.swing.JLabel();
         campo_processador = new javax.swing.JTextField();
         label_titulo = new javax.swing.JLabel();
-        botao_cadastrar = new javax.swing.JButton();
+        botao_salvar = new javax.swing.JButton();
         botao_limpar = new javax.swing.JButton();
         botao_cancelar = new javax.swing.JButton();
 
@@ -375,12 +374,12 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
 
         label_titulo.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         label_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_titulo.setText("Novo Patrimônio");
+        label_titulo.setText("Alterar Patrimônio");
 
-        botao_cadastrar.setText("Salvar");
-        botao_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+        botao_salvar.setText("Salvar");
+        botao_salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botao_cadastrarActionPerformed(evt);
+                botao_salvarActionPerformed(evt);
             }
         });
 
@@ -405,7 +404,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addComponent(botao_cadastrar)
+                .addComponent(botao_salvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botao_limpar)
                 .addGap(182, 182, 182)
@@ -428,7 +427,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
                 .addComponent(container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botao_cadastrar)
+                    .addComponent(botao_salvar)
                     .addComponent(botao_limpar)
                     .addComponent(botao_cancelar))
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -437,15 +436,13 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botao_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_cadastrarActionPerformed
+    private void botao_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_salvarActionPerformed
         ConsultaPatrimonio consuPatri = new ConsultaPatrimonio();
         consuPatri.setVisible(true);
-        TelaPrincipal.jDesktopPane.add(consuPatri);
-        consuPatri.setPosicao();
         
-        this.dispose();
+      //  
         
-        /*if (!soTemNumeros(campo_numTombamento.getText())) {
+        if (!soTemNumeros(campo_numTombamento.getText())) {
             label_tombamento.setForeground(Color.red);
             JOptionPane.showMessageDialog(this, "POR FAVOR DIGITE APENAS NÚMEROS \n"
                                               + "NO CAMPO Nº Tombamento");
@@ -459,134 +456,41 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
             label_tombamento.setForeground(Color.red);
             JOptionPane.showMessageDialog(this, "NÚMERO DE TOMBAMENTO NÃO PERMITIDO!!!");
             campo_numTombamento.requestFocus();
-        } else if (CadastroDAO.verificaNumTombamento(campo_numTombamento.getText())) {
-            label_tombamento.setForeground(Color.red);
-            JOptionPane.showMessageDialog(this, "NÚMERO DE TOMBAMENTO JÁ EXISTE "
-                                              + "\nPOR FAVOR VERIFIQUE E DIGITE NOVAMENTE");
-            campo_numTombamento.requestFocus();
-        } else {
-            if (cbPc.isSelected()) {
-                if((cbSetores.getSelectedIndex() == 0) && cbUserName.getSelectedIndex() == 0){
-                    label_setor.setForeground(Color.red);
-                    label_usuario.setForeground(Color.red);
-                    JOptionPane.showMessageDialog(this, "SELECIONE UM SETOR E UM USUÁRIO PARA CONTINUAR");
-                    cbSetores.requestFocus();
-                } else if ((cbSetores.getSelectedIndex() == 0)) {
-                    label_setor.setForeground(Color.red);
-                    JOptionPane.showMessageDialog(this, "SELECIONE UM SETOR PARA CONTINUAR");
-                    cbSetores.requestFocus();
-                } else if ((cbUserName.getSelectedIndex() == 0)) {
-                    JOptionPane.showMessageDialog(this, "SELECIONE UM USUÁRIO PARA CONTINUAR");
-                    cbUserName.requestFocus();
-                } else if (campo_descricao.getText().isEmpty()) {
-                    label_descricao.setForeground(Color.red);
-                    JOptionPane.showMessageDialog(this, "INFORME UMA DESCRIÇÃO PARA O MATERIAL");
-                    campo_descricao.requestFocus();
-                }else if (campo_descricao.getText().isEmpty() || campo_processador.getText().isEmpty() || campo_hd.getText().isEmpty() || campo_memoria.getText().isEmpty()) {
-                    if (campo_descricao.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "INFORME UMA DESCRIÇÃO PARA O MATERIAL");
-                        campo_descricao.requestFocus();
-                    } else if (campo_processador.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "INFORME UMA DESCRIÇÃO DO PROCESSADOR");
-                        campo_processador.requestFocus();
-                    } else if (campo_hd.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "INFORME O TAMANHO DO HD");
-                        campo_hd.requestFocus();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "INFORME A QUANTIDADE DE MEMÓRIA");
-                        campo_memoria.requestFocus();
-                    }
-                } else {
-                    Setor setor = (Setor) cbSetores.getSelectedItem();
-                    User user = (User) cbUserName.getSelectedItem();
+        } else {  
+            Setor setor = (Setor) cbSetores.getSelectedItem();
                 
                     Patrimonio patrimonio = new Patrimonio();
-                    Computador computador = new Computador();
-
-                    computador.setNumTombamento(campo_numTombamento.getText());
-                    computador.setProcessador(campo_processador.getText().toUpperCase());
-                    computador.setMemoria(campo_memoria.getText() + " GB");
-                    computador.setHd(campo_hd.getText() + " GB");
-                    computador.setSsd(cbSsd.isSelected());
-                    user.setId(CadastroDAO.readIdUsuario(user));
-                    computador.setUsuario(user);
-
                     patrimonio.setNumTombamento(campo_numTombamento.getText());
                     patrimonio.setDescricao(campo_descricao.getText().toUpperCase());
                     patrimonio.setMarca(campo_marca.getText().toUpperCase());
                     patrimonio.setObservacao(campo_observacao.getText().toUpperCase());
-                    patrimonio.setComputador(computador);
+                    //patrimonio.setComputador(computador);
                     setor.setId(CadastroDAO.readIdSetor(setor));
                     patrimonio.setSetor(setor);
 
-                    CadastroDAO.createPatrimonio(patrimonio);
+                    CadastroDAO.updatePatrimonio(patrimonio);
 
-                    JOptionPane.showMessageDialog(this, "Patrimônio cadastrado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    
-                    cbSetores.setSelectedIndex(0);
-                    campo_numTombamento.setText("00000");
-                    campo_descricao.setText("");
-                    campo_marca.setText("");
-                    campo_observacao.setText("");
-                    cbPc.setSelected(false);
-                    cbUserName.setSelectedIndex(0);
-                    campo_processador.setText("");
-                    campo_hd.setText("");
-                    campo_memoria.setText("");
-                    cbSsd.setSelected(false);
-                    label_setor.setForeground(Color.red);
-                    label_tombamento.setForeground(Color.red);
-                    label_descricao.setForeground(Color.red);
-                    campo_numTombamento.requestFocus();
-                }
-            } else {
-                if (cbSetores.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(this, "Patrimônio alterado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+           /* if (cbPc.isSelected()) {
+                if((cbSetores.getSelectedIndex() == 0)) {
                     label_setor.setForeground(Color.red);
                     JOptionPane.showMessageDialog(this, "SELECIONE UM SETOR PARA CONTINUAR");
                     cbSetores.requestFocus();
-                } else if (campo_numTombamento.getText().equalsIgnoreCase("00000")){
-                    label_tombamento.setForeground(Color.red);
-                    JOptionPane.showMessageDialog(this, "NÚMERO DE TOMBAMENTO NÃO PERMITIDO!!!");
-                    campo_numTombamento.requestFocus();
                 } else if (campo_descricao.getText().isEmpty()) {
                     label_descricao.setForeground(Color.red);
                     JOptionPane.showMessageDialog(this, "INFORME UMA DESCRIÇÃO PARA O MATERIAL");
                     campo_descricao.requestFocus();
                 } else {
-                    Setor setor = (Setor) cbSetores.getSelectedItem();
-                    Patrimonio patrimonio = new Patrimonio();
-                    CadastroDAO patrimonioDAO = new CadastroDAO();
-
-                    patrimonio.setNumTombamento(campo_numTombamento.getText());
-                    patrimonio.setDescricao(campo_descricao.getText().toUpperCase());
-                    patrimonio.setMarca(campo_marca.getText().toUpperCase());
-                    patrimonio.setObservacao(campo_observacao.getText().toUpperCase());
-                    setor.setId(CadastroDAO.readIdSetor(setor));
-                    patrimonio.setSetor(setor);
-
-                    patrimonioDAO.createPatrimonio(patrimonio, 0);
+                  
                     
-                    JOptionPane.showMessageDialog(this, "Patrimônio cadastrado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-                    cbSetores.setSelectedIndex(0);
-                    campo_numTombamento.setText("00000");
-                    campo_descricao.setText("");
-                    campo_marca.setText("");
-                    campo_observacao.setText("");
-                    cbPc.setSelected(false);
-                    cbUserName.setSelectedIndex(0);
-                    campo_processador.setText("");
-                    campo_hd.setText("");
-                    campo_memoria.setText("");
-                    cbSsd.setSelected(false);
-                    label_setor.setForeground(Color.red);
-                    label_tombamento.setForeground(Color.red);
-                    label_descricao.setForeground(Color.red);
-                    campo_numTombamento.requestFocus();
-                }
-            }
-        }*/
-    }//GEN-LAST:event_botao_cadastrarActionPerformed
+                }*/
+        }
+            
+        TelaPrincipal.jDesktopPane.add(consuPatri);
+        consuPatri.setPosicao();
+        
+    }//GEN-LAST:event_botao_salvarActionPerformed
 
     private void botao_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limparActionPerformed
         cbSetores.setSelectedIndex(0);
@@ -640,7 +544,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
 
     private void campo_memoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campo_memoriaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            botao_cadastrar.requestFocus();
+            botao_salvar.requestFocus();
         }
     }//GEN-LAST:event_campo_memoriaKeyPressed
 
@@ -769,9 +673,9 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campo_memoriaFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botao_cadastrar;
     private javax.swing.JButton botao_cancelar;
     private javax.swing.JButton botao_limpar;
+    private javax.swing.JButton botao_salvar;
     protected static javax.swing.JTextField campo_descricao;
     protected static javax.swing.JTextField campo_hd;
     protected static javax.swing.JTextField campo_marca;

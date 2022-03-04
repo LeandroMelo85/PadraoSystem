@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-              <Component id="botao_cadastrar" min="-2" max="-2" attributes="0"/>
+              <Component id="botao_salvar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="botao_limpar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
@@ -59,7 +59,7 @@
               <Component id="container" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="botao_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botao_salvar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botao_limpar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botao_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -442,15 +442,15 @@
           <Font name="Century Gothic" size="48" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Novo Patrim&#xf4;nio"/>
+        <Property name="text" type="java.lang.String" value="Alterar Patrim&#xf4;nio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="botao_cadastrar">
+    <Component class="javax.swing.JButton" name="botao_salvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_cadastrarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_salvarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botao_limpar">

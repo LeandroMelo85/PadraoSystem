@@ -631,7 +631,27 @@ public class CadastroDAO {
         return patrimonio;
     }
 
-    public static void updatePatrimonio(){
+    public static void updatePatrimonio(Patrimonio p){
         
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE PATRIMONIO SET DESCRICAO = ?, MARCA = ?, OBSERVACAO = ?, ID_SETOR = ? WHERE NUM_TOMBAMENTO = ?");
+            stmt.setString(1, p.getDescricao());
+            stmt.setString(2, p.getMarca());
+            stmt.setString(3, p.getObservacao());
+            stmt.setInt(4, p.getSetor().getId());
+            stmt.setString(5, p.getNumTombamento());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
     }
+        
+    
 }
