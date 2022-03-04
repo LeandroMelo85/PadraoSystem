@@ -104,7 +104,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         campo_versao.setEditable(false);
         campo_versao.setForeground(new java.awt.Color(153, 153, 153));
-        campo_versao.setText("0.03");
+        campo_versao.setText("0.01");
         campo_versao.setEnabled(false);
 
         javax.swing.GroupLayout painel_rodapeLayout = new javax.swing.GroupLayout(painel_rodape);
@@ -138,7 +138,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jm_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/application.png"))); // NOI18N
         jm_menu.setText("CADASTRO");
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem3.setText("Patrimônio");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jm_menu.add(jMenuItem3);
 
-        jM_NovoComputador.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        jM_NovoComputador.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jM_NovoComputador.setText("Novo Computador");
         jM_NovoComputador.setEnabled(false);
         jM_NovoComputador.addActionListener(new java.awt.event.ActionListener() {
@@ -158,13 +158,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jm_menu.add(jM_NovoComputador);
         jm_menu.add(jSeparator2);
 
-        cbSelecionaLocal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
+        cbSelecionaLocal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_DOWN_MASK));
         cbSelecionaLocal.setSelected(true);
         cbSelecionaLocal.setText("No Trabalho");
         jm_menu.add(cbSelecionaLocal);
         jm_menu.add(jSeparator1);
 
-        jmi_sair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
+        jmi_sair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jmi_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/door_in.png"))); // NOI18N
         jmi_sair.setText("Sair");
         jmi_sair.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +179,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jm_consulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/folder.png"))); // NOI18N
         jm_consulta.setText("CONSULTA");
 
-        jmi_clicad.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
+        jmi_clicad.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jmi_clicad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/folder_explore.png"))); // NOI18N
         jmi_clicad.setText("Patrimônios Cadastrados");
         jmi_clicad.addActionListener(new java.awt.event.ActionListener() {
@@ -193,13 +193,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jm_manutencao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wrench.png"))); // NOI18N
         jm_manutencao.setText("MANUTENÇÃO");
-        jm_manutencao.setActionCommand("MANUTENÇÃO");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/key.png"))); // NOI18N
         jMenuItem1.setText("Alterar Senha");
         jm_manutencao.add(jMenuItem1);
 
-        jM_NovoSetor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jM_NovoSetor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jM_NovoSetor.setText("Novo Setor");
         jM_NovoSetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +207,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jm_manutencao.add(jM_NovoSetor);
 
-        jM_NovoUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
+        jM_NovoUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jM_NovoUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user_add.png"))); // NOI18N
         jM_NovoUser.setText("Novo Usuário");
         jM_NovoUser.addActionListener(new java.awt.event.ActionListener() {

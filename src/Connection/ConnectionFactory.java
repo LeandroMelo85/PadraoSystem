@@ -19,10 +19,10 @@ public class ConnectionFactory {
 //SQL SERVER PADRAO
     public static Connection connection;
     public static String classDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String URL = "jdbc:sqlserver://10.10.0.200:1433;databaseName=tombamento;";
+    public static String URL = "jdbc:sqlserver://10.10.0.201:1433;databaseName=tombamento;";
     public static String URLHome = "jdbc:sqlserver://;databaseName=tombamento;";
-    public static String USER = "";
-    public static String PASS = "";
+    public static String USER = "usertomb";
+    public static String PASS = "123@Abcd";
     
     //MYSQL
     /*private static final String DRIVER = "com.mysql.jdbc.Driver";
