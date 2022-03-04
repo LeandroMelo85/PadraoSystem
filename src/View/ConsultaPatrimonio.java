@@ -193,6 +193,7 @@ public class ConsultaPatrimonio extends javax.swing.JInternalFrame {
         painel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         label_clicad.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        label_clicad.setForeground(new java.awt.Color(0, 0, 255));
         label_clicad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_clicad.setText("Patrimônios Cadastrados");
 
