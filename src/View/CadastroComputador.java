@@ -339,8 +339,6 @@ public class CadastroComputador extends javax.swing.JInternalFrame {
             computador.setMemoria(campo_memoria.getText() + " GB");
             computador.setHd(campo_hd.getText() + " GB");
             computador.setSsd(cbSsd.isSelected());
-            user.setId(compDAO.readIdUsuario(user));
-            computador.setUsuario(user);
             
             
             //JOptionPane.showMessageDialog(null, "USER ID: " + user.getId() + "\nUSER NOME: " + user.getUserNome()

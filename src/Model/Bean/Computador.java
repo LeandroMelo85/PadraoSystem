@@ -12,7 +12,6 @@ public class Computador {
     private String memoria;
     private String hd;
     private boolean ssd;
-    private User usuario;
 
     public int getId() {
         return id;
@@ -62,14 +61,6 @@ public class Computador {
         this.ssd = ssd;
     }
 
-    public User getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
-    }
-
     @Override
     public String toString() {
         return "   ID: " + id + 
@@ -77,8 +68,7 @@ public class Computador {
                "\n   PROCESSADOR: " + processador + 
                "\n   MEMÓRIA: " + memoria + 
                "\n   HD: " + hd + 
-               "\n   SSD: " + ssd + 
-               "\n   USUÁRIO: \n" + usuario; 
+               "\n   SSD: " + ssd;
     }
 
 }

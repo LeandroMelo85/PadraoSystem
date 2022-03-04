@@ -50,11 +50,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         setores.readSetor().forEach((s) -> {
             cbSetores.addItem(s);
         });
-
-        CadastroDAO user = new CadastroDAO();
-        user.readUser().forEach((u) -> {
-            cbUserName.addItem(u);
-        });
     }
 
     public void setPosicao() {
@@ -86,7 +81,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         container = new javax.swing.JPanel();
-        label_usuario = new javax.swing.JLabel();
         campo_hd = new javax.swing.JTextField();
         label_descricao = new javax.swing.JLabel();
         campo_descricao = new javax.swing.JTextField();
@@ -99,7 +93,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         campo_numTombamento = new javax.swing.JTextField();
         cbSetores = new javax.swing.JComboBox<>();
         cbSsd = new javax.swing.JCheckBox();
-        cbUserName = new javax.swing.JComboBox<>();
         label_gb1 = new javax.swing.JLabel();
         label_gb2 = new javax.swing.JLabel();
         label_observacao = new javax.swing.JLabel();
@@ -123,9 +116,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         container.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
-
-        label_usuario.setFont(new java.awt.Font("Helvetica", 1, 18)); // NOI18N
-        label_usuario.setText("Usuário: ");
 
         campo_hd.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         campo_hd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -214,13 +204,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
 
         cbSsd.setText("SIM");
 
-        cbUserName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA UM USUÁRIO" }));
-        cbUserName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cbUserNameFocusLost(evt);
-            }
-        });
-
         label_gb1.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
         label_gb1.setText("GB");
 
@@ -299,13 +282,9 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
                             .addComponent(campo_descricao)
                             .addComponent(label_descricao, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
                         .addGroup(containerLayout.createSequentialGroup()
-                            .addComponent(label_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(350, 350, 350))
-                        .addGroup(containerLayout.createSequentialGroup()
                             .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(campo_processador, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label_processador, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbUserName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(label_processador, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(45, 45, 45)
                             .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(containerLayout.createSequentialGroup()
@@ -367,11 +346,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
                         .addComponent(label_pc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbPc)))
-                .addGap(18, 18, 18)
-                .addComponent(label_usuario)
-                .addGap(6, 6, 6)
-                .addComponent(cbUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(85, 85, 85)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(containerLayout.createSequentialGroup()
@@ -402,7 +377,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         label_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_titulo.setText("Novo Patrimônio");
 
-        botao_cadastrar.setText("Cadastrar");
+        botao_cadastrar.setText("Salvar");
         botao_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_cadastrarActionPerformed(evt);
@@ -410,6 +385,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         });
 
         botao_limpar.setText("Limpar");
+        botao_limpar.setEnabled(false);
         botao_limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_limparActionPerformed(evt);
@@ -430,9 +406,9 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addComponent(botao_cadastrar)
-                .addGap(166, 166, 166)
-                .addComponent(botao_limpar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botao_limpar)
+                .addGap(182, 182, 182)
                 .addComponent(botao_cancelar)
                 .addGap(88, 88, 88))
             .addGroup(layout.createSequentialGroup()
@@ -455,7 +431,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
                     .addComponent(botao_cadastrar)
                     .addComponent(botao_limpar)
                     .addComponent(botao_cancelar))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -619,7 +595,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         campo_marca.setText("");
         campo_observacao.setText("");
         cbPc.setSelected(false);
-        cbUserName.setSelectedIndex(0);
         campo_processador.setText("");
         campo_hd.setText("");
         campo_memoria.setText("");
@@ -711,28 +686,23 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
 
     private void cbPcStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cbPcStateChanged
         if (cbPc.isSelected()) {
-            cbUserName.setEnabled(true);
             campo_processador.setEnabled(true);
             campo_hd.setEnabled(true);
             campo_memoria.setEnabled(true);
             cbSsd.setEnabled(true);
-            label_usuario.setForeground(Color.black);
             label_processador.setForeground(Color.black);
             label_hd.setForeground(Color.black);
             label_memoria.setForeground(Color.black);
             label_ssd.setForeground(Color.black);
-        } else {                            // TODO: verificar uso do código e se preciso remover ação
-            cbUserName.setEnabled(false);
+        } else {// TODO: verificar uso do código e se preciso remover ação
             campo_processador.setEnabled(false);
             campo_hd.setEnabled(false);
             campo_memoria.setEnabled(false);
             cbSsd.setEnabled(false);
-            label_usuario.setForeground(Color.gray);
             label_processador.setForeground(Color.gray);
             label_hd.setForeground(Color.gray);
             label_memoria.setForeground(Color.gray);
             label_ssd.setForeground(Color.gray);
-            cbUserName.setSelectedIndex(0);
             //campo_processador.setText("");
             //campo_hd.setText("");
             //campo_memoria.setText("");
@@ -763,14 +733,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
             label_descricao.setForeground(Color.black);
         }
     }//GEN-LAST:event_campo_descricaoFocusLost
-
-    private void cbUserNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbUserNameFocusLost
-        if (cbUserName.getSelectedIndex() == 0){
-            label_usuario.setForeground(Color.red);
-        } else {
-            label_usuario.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_cbUserNameFocusLost
 
     private void campo_processadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campo_processadorFocusLost
         if (campo_processador.getText().isEmpty()) {
@@ -820,7 +782,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
     protected static javax.swing.JCheckBox cbPc;
     protected static javax.swing.JComboBox<Object> cbSetores;
     protected static javax.swing.JCheckBox cbSsd;
-    protected static javax.swing.JComboBox<Object> cbUserName;
     private javax.swing.JPanel container;
     private javax.swing.JLabel label_descricao;
     private javax.swing.JLabel label_gb1;
@@ -835,6 +796,5 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel label_ssd;
     private javax.swing.JLabel label_titulo;
     private javax.swing.JLabel label_tombamento;
-    private javax.swing.JLabel label_usuario;
     // End of variables declaration//GEN-END:variables
 }

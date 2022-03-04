@@ -72,14 +72,13 @@ public class CadastroDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO COMPUTADOR (NUM_TOMBAMENTO, PROCESSADOR, MEMORIA, HD, SSD, ID_USUARIO, DELET) VALUES(?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO COMPUTADOR (NUM_TOMBAMENTO, PROCESSADOR, MEMORIA, HD, SSD, DELET) VALUES(?,?,?,?,?,?)");
             stmt.setString(1, c.getNumTombamento());
             stmt.setString(2, c.getProcessador());
             stmt.setString(3, c.getMemoria());
             stmt.setString(4, c.getHd());
             stmt.setBoolean(5, c.getSsd());
-            stmt.setInt(6, c.getUsuario().getId());
-            stmt.setString(7, "");
+            stmt.setString(6, "");
 
             stmt.executeUpdate();
 
@@ -317,7 +316,6 @@ public class CadastroDAO {
                 computador.setMemoria(rs.getString("MEMORIA"));
                 computador.setHd(rs.getString("HD"));
                 computador.setSsd(rs.getBoolean("SSD"));
-                computador.setUsuario(readUser(rs.getInt("ID_USUARIO")));
 
             }
         } catch (SQLException ex) {
@@ -631,5 +629,9 @@ public class CadastroDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return patrimonio;
+    }
+
+    public static void updatePatrimonio(){
+        
     }
 }
