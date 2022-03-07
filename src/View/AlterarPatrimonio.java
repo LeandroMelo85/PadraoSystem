@@ -8,7 +8,6 @@ package View;
 import Model.Bean.Computador;
 import Model.Bean.Patrimonio;
 import Model.Bean.Setor;
-import Model.Bean.User;
 import Model.DAO.CadastroDAO;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -32,7 +31,6 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
     public AlterarPatrimonio() {
         initComponents();
 
-        cbPc.setEnabled(true);
         /*campo_processador.setEnabled(false);
         campo_hd.setEnabled(false);
         campo_memoria.setEnabled(false);
@@ -180,6 +178,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
         label_tombamento.setText("Nº Tombamento:");
 
         campo_numTombamento.setText("00000");
+        campo_numTombamento.setEnabled(false);
         campo_numTombamento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 campo_numTombamentoFocusGained(evt);
@@ -437,59 +436,73 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botao_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_salvarActionPerformed
-        ConsultaPatrimonio consuPatri = new ConsultaPatrimonio();
-        consuPatri.setVisible(true);
-        
-      //  
-        
-        if (!soTemNumeros(campo_numTombamento.getText())) {
-            label_tombamento.setForeground(Color.red);
-            JOptionPane.showMessageDialog(this, "POR FAVOR DIGITE APENAS NÚMEROS \n"
-                                              + "NO CAMPO Nº Tombamento");
-            campo_numTombamento.requestFocus();
-        } else if (campo_numTombamento.getText().length() != 5) {
-            label_tombamento.setForeground(Color.red);
-            JOptionPane.showMessageDialog(this, "Nº DE TOMBAMENTO INCORRETO!\n"
-                                              + "POR FAVOR INFORME UM NÚMERO COM 5 DÍGITOS");
-            campo_numTombamento.requestFocus();
-        } else if (campo_numTombamento.getText().equalsIgnoreCase("00000")){
-            label_tombamento.setForeground(Color.red);
-            JOptionPane.showMessageDialog(this, "NÚMERO DE TOMBAMENTO NÃO PERMITIDO!!!");
-            campo_numTombamento.requestFocus();
-        } else {  
-            Setor setor = (Setor) cbSetores.getSelectedItem();
-                
-                    Patrimonio patrimonio = new Patrimonio();
-                    patrimonio.setNumTombamento(campo_numTombamento.getText());
+        if (cbPc.isSelected()){
+            if ((cbSetores.getSelectedIndex() == 0) || campo_descricao.getText().isEmpty() || campo_processador.getText().isEmpty() || campo_hd.getText().isEmpty() || campo_memoria.getText().isEmpty()) {
+                if((cbSetores.getSelectedIndex() == 0)) {
+                    label_setor.setForeground(Color.red);
+                    JOptionPane.showMessageDialog(this, "SELECIONE UM SETOR PARA CONTINUAR", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    cbSetores.requestFocus();
+                }else if (campo_descricao.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "INFORME UMA DESCRIÇÃO PARA O MATERIAL", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    campo_descricao.requestFocus();
+                } else if (campo_processador.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "INFORME UMA DESCRIÇÃO DO PROCESSADOR", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    campo_processador.requestFocus();
+                } else if (campo_hd.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "INFORME O TAMANHO DO HD", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    campo_hd.requestFocus();
+                } else {
+                    JOptionPane.showMessageDialog(this, "INFORME A QUANTIDADE DE MEMÓRIA", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    campo_memoria.requestFocus();
+                    }
+            } else {
+                   // Setor setor = (Setor) cbSetores.getSelectedItem();
+
+                    //Patrimonio patrimonio = new Patrimonio();
+                    Computador computador = new Computador();
+
+                    computador.setNumTombamento(campo_numTombamento.getText());
+                    computador.setProcessador(campo_processador.getText().toUpperCase());
+                    computador.setMemoria(campo_memoria.getText() + " GB");
+                    computador.setHd(campo_hd.getText() + " GB");
+                    computador.setSsd(cbSsd.isSelected());
+
+                    /*patrimonio.setNumTombamento(campo_numTombamento.getText());
                     patrimonio.setDescricao(campo_descricao.getText().toUpperCase());
                     patrimonio.setMarca(campo_marca.getText().toUpperCase());
                     patrimonio.setObservacao(campo_observacao.getText().toUpperCase());
-                    //patrimonio.setComputador(computador);
+                    patrimonio.setComputador(computador);
                     setor.setId(CadastroDAO.readIdSetor(setor));
-                    patrimonio.setSetor(setor);
+                    patrimonio.setSetor(setor);*/
 
-                    CadastroDAO.updatePatrimonio(patrimonio);
+                    CadastroDAO.updatePatrimonio(computador);
 
                     JOptionPane.showMessageDialog(this, "Patrimônio alterado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    this.dispose();
-           /* if (cbPc.isSelected()) {
-                if((cbSetores.getSelectedIndex() == 0)) {
-                    label_setor.setForeground(Color.red);
-                    JOptionPane.showMessageDialog(this, "SELECIONE UM SETOR PARA CONTINUAR");
-                    cbSetores.requestFocus();
-                } else if (campo_descricao.getText().isEmpty()) {
-                    label_descricao.setForeground(Color.red);
-                    JOptionPane.showMessageDialog(this, "INFORME UMA DESCRIÇÃO PARA O MATERIAL");
-                    campo_descricao.requestFocus();
-                } else {
-                  
-                    
-                }*/
+            this.dispose();
+            }
+      } else {  
+            Setor setor = (Setor) cbSetores.getSelectedItem();
+
+            Patrimonio patrimonio = new Patrimonio();
+            patrimonio.setNumTombamento(campo_numTombamento.getText());
+            patrimonio.setDescricao(campo_descricao.getText().toUpperCase());
+            patrimonio.setMarca(campo_marca.getText().toUpperCase());
+            patrimonio.setObservacao(campo_observacao.getText().toUpperCase());
+            //patrimonio.setComputador(computador);
+            setor.setId(CadastroDAO.readIdSetor(setor));
+            patrimonio.setSetor(setor);
+
+            CadastroDAO.updatePatrimonio(patrimonio);
+
+            JOptionPane.showMessageDialog(this, "Patrimônio alterado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         }
-            
+                    
+        ConsultaPatrimonio consuPatri = new ConsultaPatrimonio();
+        consuPatri.setVisible(true);
         TelaPrincipal.jDesktopPane.add(consuPatri);
         consuPatri.setPosicao();
-        
+                
     }//GEN-LAST:event_botao_salvarActionPerformed
 
     private void botao_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limparActionPerformed

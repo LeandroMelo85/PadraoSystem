@@ -474,7 +474,7 @@ public class ConsultaPatrimonio extends javax.swing.JInternalFrame {
                     AlterarPatrimonio.cbSetores.setSelectedIndex(i);
                 } //Função encontrada em: https://www.guj.com.br/t/pegar-todos-os-dados-de-um-jcombobox-resolvido/117110 Usuário: criador. Em: 01/08/2020
             }
-            AlterarPatrimonio.cbPc.setEnabled(false);
+            //AlterarPatrimonio.cbPc.setEnabled(false);
             if (patrimonio.getComputador().getId() != 0){
                 /*for (int j = 0; j < AlterarPatrimonio.cbUserName.getItemCount(); j++) {
                     if (AlterarPatrimonio.cbUserName.getItemAt(j).toString().equals(patrimonio.getComputador().getUsuario().toString())) {

@@ -652,6 +652,28 @@ public class CadastroDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
+    
+    public static void updatePatrimonio(Computador c){
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE COMPUTADOR SET PROCESSADOR = ?, MEMORIA = ?, HD = ?, SSD = ? WHERE NUM_TOMBAMENTO =?");
+            stmt.setString(1, c.getProcessador());
+            stmt.setString(2, c.getMemoria());
+            stmt.setString(3, c.getHd());
+            stmt.setBoolean(4, c.getSsd());
+            stmt.setString(5, c.getNumTombamento());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
         
     
 }
