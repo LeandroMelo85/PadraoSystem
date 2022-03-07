@@ -104,7 +104,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         campo_versao.setEditable(false);
         campo_versao.setForeground(new java.awt.Color(153, 153, 153));
-        campo_versao.setText("0.01");
+        campo_versao.setText("0.02");
         campo_versao.setEnabled(false);
 
         javax.swing.GroupLayout painel_rodapeLayout = new javax.swing.GroupLayout(painel_rodape);
