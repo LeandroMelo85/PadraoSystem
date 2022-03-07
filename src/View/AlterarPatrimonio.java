@@ -31,6 +31,7 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
     public AlterarPatrimonio() {
         initComponents();
 
+        cbPc.setEnabled(false);
         /*campo_processador.setEnabled(false);
         campo_hd.setEnabled(false);
         campo_memoria.setEnabled(false);
@@ -454,55 +455,69 @@ public class AlterarPatrimonio extends javax.swing.JInternalFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "INFORME A QUANTIDADE DE MEMÓRIA", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
                     campo_memoria.requestFocus();
-                    }
+                }
             } else {
-                   // Setor setor = (Setor) cbSetores.getSelectedItem();
+                Setor setor = (Setor) cbSetores.getSelectedItem();
 
-                    //Patrimonio patrimonio = new Patrimonio();
-                    Computador computador = new Computador();
+                Patrimonio patrimonio = new Patrimonio();
+                Computador computador = new Computador();
 
-                    computador.setNumTombamento(campo_numTombamento.getText());
-                    computador.setProcessador(campo_processador.getText().toUpperCase());
-                    computador.setMemoria(campo_memoria.getText() + " GB");
-                    computador.setHd(campo_hd.getText() + " GB");
-                    computador.setSsd(cbSsd.isSelected());
+                computador.setNumTombamento(campo_numTombamento.getText());
+                computador.setProcessador(campo_processador.getText().toUpperCase());
+                computador.setMemoria(campo_memoria.getText() + " GB");
+                computador.setHd(campo_hd.getText() + " GB");
+                computador.setSsd(cbSsd.isSelected());
 
-                    /*patrimonio.setNumTombamento(campo_numTombamento.getText());
-                    patrimonio.setDescricao(campo_descricao.getText().toUpperCase());
-                    patrimonio.setMarca(campo_marca.getText().toUpperCase());
-                    patrimonio.setObservacao(campo_observacao.getText().toUpperCase());
-                    patrimonio.setComputador(computador);
-                    setor.setId(CadastroDAO.readIdSetor(setor));
-                    patrimonio.setSetor(setor);*/
+                patrimonio.setNumTombamento(campo_numTombamento.getText());
+                patrimonio.setDescricao(campo_descricao.getText().toUpperCase());
+                patrimonio.setMarca(campo_marca.getText().toUpperCase());
+                patrimonio.setObservacao(campo_observacao.getText().toUpperCase());
+                patrimonio.setComputador(computador);
+                setor.setId(CadastroDAO.readIdSetor(setor));
+                patrimonio.setSetor(setor);
 
-                    CadastroDAO.updatePatrimonio(computador);
+                CadastroDAO.updatePatrimonio(patrimonio);
 
-                    JOptionPane.showMessageDialog(this, "Patrimônio alterado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+                JOptionPane.showMessageDialog(this, "Patrimônio alterado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                ConsultaPatrimonio consuPatri = new ConsultaPatrimonio();
+                consuPatri.setVisible(true);
+                TelaPrincipal.jDesktopPane.add(consuPatri);
+                consuPatri.setPosicao();
+                this.dispose();
             }
-      } else {  
-            Setor setor = (Setor) cbSetores.getSelectedItem();
+        } else { 
+            if ((cbSetores.getSelectedIndex() == 0) || campo_descricao.getText().isEmpty()) {
+                if((cbSetores.getSelectedIndex() == 0)) {
+                    label_setor.setForeground(Color.red);
+                    JOptionPane.showMessageDialog(this, "SELECIONE UM SETOR PARA CONTINUAR", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    cbSetores.requestFocus();
+                } else if (campo_descricao.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "INFORME UMA DESCRIÇÃO PARA O MATERIAL", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+                    campo_descricao.requestFocus();
+                } 
+            } else {
+                Setor setor = (Setor) cbSetores.getSelectedItem();
 
-            Patrimonio patrimonio = new Patrimonio();
-            patrimonio.setNumTombamento(campo_numTombamento.getText());
-            patrimonio.setDescricao(campo_descricao.getText().toUpperCase());
-            patrimonio.setMarca(campo_marca.getText().toUpperCase());
-            patrimonio.setObservacao(campo_observacao.getText().toUpperCase());
-            //patrimonio.setComputador(computador);
-            setor.setId(CadastroDAO.readIdSetor(setor));
-            patrimonio.setSetor(setor);
+                Patrimonio patrimonio = new Patrimonio();
+                patrimonio.setNumTombamento(campo_numTombamento.getText());
+                patrimonio.setDescricao(campo_descricao.getText().toUpperCase());
+                patrimonio.setMarca(campo_marca.getText().toUpperCase());
+                patrimonio.setObservacao(campo_observacao.getText().toUpperCase());
+                //patrimonio.setComputador(computador);
+                setor.setId(CadastroDAO.readIdSetor(setor));
+                patrimonio.setSetor(setor);
 
-            CadastroDAO.updatePatrimonio(patrimonio);
+                CadastroDAO.updatePatrimonio(patrimonio);
 
-            JOptionPane.showMessageDialog(this, "Patrimônio alterado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+                JOptionPane.showMessageDialog(this, "Patrimônio alterado com sucesso!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                ConsultaPatrimonio consuPatri = new ConsultaPatrimonio();
+                consuPatri.setVisible(true);
+                TelaPrincipal.jDesktopPane.add(consuPatri);
+                consuPatri.setPosicao();
+                this.dispose();}
         }
-                    
-        ConsultaPatrimonio consuPatri = new ConsultaPatrimonio();
-        consuPatri.setVisible(true);
-        TelaPrincipal.jDesktopPane.add(consuPatri);
-        consuPatri.setPosicao();
-                
     }//GEN-LAST:event_botao_salvarActionPerformed
 
     private void botao_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limparActionPerformed

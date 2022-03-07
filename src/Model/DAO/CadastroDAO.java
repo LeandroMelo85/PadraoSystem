@@ -636,20 +636,47 @@ public class CadastroDAO {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
-        try {
-            stmt = con.prepareStatement("UPDATE PATRIMONIO SET DESCRICAO = ?, MARCA = ?, OBSERVACAO = ?, ID_SETOR = ? WHERE NUM_TOMBAMENTO = ?");
-            stmt.setString(1, p.getDescricao());
-            stmt.setString(2, p.getMarca());
-            stmt.setString(3, p.getObservacao());
-            stmt.setInt(4, p.getSetor().getId());
-            stmt.setString(5, p.getNumTombamento());
+        if(p.getComputador() == null){
+            try {
+                stmt = con.prepareStatement("UPDATE PATRIMONIO SET DESCRICAO = ?, MARCA = ?, OBSERVACAO = ?, ID_SETOR = ? WHERE NUM_TOMBAMENTO = ?");
+                stmt.setString(1, p.getDescricao());
+                stmt.setString(2, p.getMarca());
+                stmt.setString(3, p.getObservacao());
+                stmt.setInt(4, p.getSetor().getId());
+                stmt.setString(5, p.getNumTombamento());
 
-            stmt.executeUpdate();
+                stmt.executeUpdate();
 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar: " + ex);
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao Cadastrar: " + ex);
+            } finally {
+                ConnectionFactory.closeConnection(con, stmt);
+            }
+        } else {
+            try {
+                stmt = con.prepareStatement("UPDATE PATRIMONIO SET DESCRICAO = ?, MARCA = ?, OBSERVACAO = ?, ID_SETOR = ? WHERE NUM_TOMBAMENTO = ?");
+                stmt.setString(1, p.getDescricao());
+                stmt.setString(2, p.getMarca());
+                stmt.setString(3, p.getObservacao());
+                stmt.setInt(4, p.getSetor().getId());
+                stmt.setString(5, p.getNumTombamento());
+
+                stmt.executeUpdate();
+                
+                stmt = con.prepareStatement("UPDATE COMPUTADOR SET PROCESSADOR = ?, MEMORIA = ?, HD = ?, SSD = ? WHERE NUM_TOMBAMENTO =?");
+                stmt.setString(1, p.getComputador().getProcessador());
+                stmt.setString(2, p.getComputador().getMemoria());
+                stmt.setString(3, p.getComputador().getHd());
+                stmt.setBoolean(4, p.getComputador().getSsd());
+                stmt.setString(5, p.getComputador().getNumTombamento());
+
+                stmt.executeUpdate();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao Cadastrar: " + ex);
+            } finally {
+                ConnectionFactory.closeConnection(con, stmt);
+            }
         }
     }
     
